@@ -226,8 +226,6 @@ features = list(squeezenet1_1.classifier.children())[:-3] # Remove last 3 layers
 features.extend([nn.Conv2d(num_features, len(class_names), kernel_size=1)]) # Add
 features.extend([nn.ReLU(inplace=True)]) # Add
 features.extend([nn.AdaptiveAvgPool2d(output_size=(1,1))]) # Add
-# features.extend([nn.Linear(num_features, len(class_names))]) # Add our layer with 2 outputs
-# features.extend([nn.Linear(num_features, 1)]) # Add our layer with 1 output, '0' or '1'
 squeezenet1_1.classifier = nn.Sequential(*features) # Replace the model classifier
 print(squeezenet1_1)
 
